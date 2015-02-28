@@ -1,0 +1,151 @@
+<!doctype html>  
+<head>  
+  <meta charset="utf-8">  
+  <title>Exercise 3</title>    
+</head>  
+
+<body>
+    
+    <p>
+        Standard Books: <br />
+        Free: <label id="standardFreeLabel"></label> <br />
+        Borrowed: <label id="standardBorrowedLabel"></label>
+    </p>
+    
+    <p>
+        VIP Books: <br />
+        Free: <label id="vipFreeLabel"></label> <br />
+        Borrowed: <label id="vipBorrowedLabel"></label>
+    </p>
+    
+    <p>
+        <input id="titleInput" />
+    </p>
+    
+    <button id="addStandardBookBtn">Add Standard Book</button>
+    <button id="addVipBookBtn">Add VIP Book</button>
+    <button id="borrowStandardBtn">Borrow Standard Book</button>
+    <button id="borrowVipBtn">Borrow VIP Book</button>
+    
+    <script type="text/javascript">
+        
+        var standardBook = {
+            title: [],
+            isBorrowed: []
+        };
+        
+        var vipBook = {
+            title: [],
+            isBorrowed: []
+        };
+        
+        function addStandardBook(title) {
+            for(var n = 0; n < standardBook.title.length; ++n) {
+                if(standardBook.title[n] == title) {
+                    standardBook.isBorrowed[n] = "true";
+                    return 0;
+                }
+            }
+            standardBook.title.push(title);
+            standardBook.isBorrowed.push("true");
+        }
+        
+        function addVipBook(title) {
+            for(var n = 0; n < vipBook.title.length; ++n) {
+                if(vipBook.title[n] == title) {
+                    vipBook.isBorrowed[n] = "true";
+                    return 0;
+                }
+            }
+            vipBook.title.push(title);
+            vipBook.isBorrowed.push("true");
+        }
+        
+        function borrowStandardBook(title) {
+            for (var n = 0; n < standardBook.title.length; ++n) { 
+                if(standardBook.title[n] == title && standardBook.isBorrowed[n] == "true") {
+                        standardBook.isBorrowed[n] = "false";    
+                }
+            }
+        }
+        
+        function borrowVipBook(title) {
+            for (var n = 0; n < vipBook.title.length; ++n) { 
+                if(vipBook.title[n] == title && vipBook.isBorrowed[n] == "true") {
+                        vipBook.isBorrowed[n] = "false";    
+                    } 
+            }
+        }
+        
+        function printStandards() {
+            var concateStandard = '', concateStandardBorrowed = '';
+            
+            for (var n = 0; n < standardBook.title.length; ++n) { 
+                if(standardBook.isBorrowed[n] == "true") {
+                    concateStandard = concateStandard + standardBook.title[n] + ", ";
+                }
+            }
+            
+            for (var n = 0; n < standardBook.title.length; ++n) { 
+                if(standardBook.isBorrowed[n] == "false") {
+                    concateStandardBorrowed = concateStandardBorrowed + standardBook.title[n] + ", ";
+                }
+            }
+            
+            document.getElementById("standardFreeLabel").innerHTML = concateStandard;
+            document.getElementById("standardBorrowedLabel").innerHTML = concateStandardBorrowed;
+        }
+        
+        function printVip() {
+            var concateVip = '', concateVipBorrowed = '';
+            
+            for (var n = 0; n < vipBook.title.length; ++n) { 
+                if(vipBook.isBorrowed[n] == "true") {
+                    concateVip = concateVip + vipBook.title[n] + ", ";
+                }
+            }
+            
+            for (var n = 0; n < vipBook.title.length; ++n) { 
+                if(vipBook.isBorrowed[n] == "false") {
+                    concateVipBorrowed = concateVipBorrowed + vipBook.title[n] + ", ";
+                }
+            }
+            
+            document.getElementById("vipFreeLabel").innerHTML = concateVip;
+            document.getElementById("vipBorrowedLabel").innerHTML = concateVipBorrowed;
+        }
+        
+    </script>
+    
+    
+    <script type="text/javascript">
+        
+        document.getElementById("addStandardBookBtn").addEventListener("click", function() {
+            var title = document.getElementById("titleInput").value;
+            addStandardBook(title);
+            printStandards();
+            printVip();
+        });
+        document.getElementById("addVipBookBtn").addEventListener("click", function() {
+            var title = document.getElementById("titleInput").value;
+            addVipBook(title);
+            printStandards();
+            printVip();
+        });
+        document.getElementById("borrowStandardBtn").addEventListener("click", function() {
+            var title = document.getElementById("titleInput").value;
+            borrowStandardBook(title);
+            printStandards();
+            printVip();
+        });
+        document.getElementById("borrowVipBtn").addEventListener("click", function() {
+            var title = document.getElementById("titleInput").value;
+            borrowVipBook(title);
+            printStandards();
+            printVip();
+        });
+
+    </script>
+    
+</body>
+</html>  

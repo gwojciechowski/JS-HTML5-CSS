@@ -1,0 +1,100 @@
+<!doctype html>  
+<head>  
+  <meta charset="utf-8">  
+  <title>Exercise 2</title>    
+</head>  
+
+<body>
+    
+    <p>Boolean: <label id="boolLabel"></label></p>
+    <p>Number: <label id="numberLabel"></label></p>
+    <p>Object: <label id="objectLabel"></label></p>
+    <p>String: <label id="stringLabel"></label></p>
+    <p>Falsy: <label id="falseLabel"></label></p>
+    
+    <button id="addBoolBtn">Add boolean</button>
+    <button id="addNumberBtn">Add number</button>
+    <button id="addStringBtn">Add not empty string</button>
+    <button id="addObjectBtn">Add object</button>
+    <button id="addNullBtn">Add null</button>
+    <button id="addUndefinedBtn">Add undefined</button>
+    <button id="addEmptyStringBtn">Add Empty String</button>
+    
+    <script type="text/javascript">
+        
+        var arr = [];
+        
+        function countBoolean() {
+            var sum = 0;
+            for(var i = 0; i < arr.length; i++) {
+                if(typeof arr[i] === "boolean") {
+                    sum++;
+                }
+            }
+            return sum;
+        }
+        
+        function countNumber() {
+            var sum = 0;
+            for(var i = 0; i < arr.length; i++) {
+                if(typeof arr[i] === "number") {
+                    sum++;
+                }
+            }
+            return sum;
+        }
+        
+        function countObject() {
+            var sum = 0;
+            for(var i = 0; i < arr.length; i++) {
+                if(typeof arr[i] === "object") {
+                    sum++;
+                }
+            }
+            return sum;
+        }   
+        
+        function countString() {
+            var sum = 0;
+            for(var i = 0; i < arr.length; i++) {
+                if(typeof arr[i] === "string") {
+                    sum++;
+                }
+            }
+            return sum;
+        }
+        
+        function countFalsy() {
+            var sum = 0;
+            for(var i = 0; i < arr.length; i++) {
+                if(!arr[i]) {
+                    sum++;
+                }
+            }
+            return sum;
+        }
+        
+        function refresh() {
+            document.getElementById("boolLabel").innerHTML = countBoolean();
+            document.getElementById("numberLabel").innerHTML = countNumber();
+            document.getElementById("objectLabel").innerHTML = countObject();
+            document.getElementById("stringLabel").innerHTML = countString();
+            document.getElementById("falseLabel").innerHTML = countFalsy();
+        }
+        
+    </script>
+    
+    <script type="text/javascript">
+        
+        document.getElementById("addBoolBtn").addEventListener("click", function() { arr.push(true); refresh(); } );
+        document.getElementById("addNumberBtn").addEventListener("click", function() { arr.push(5); refresh(); } );
+        document.getElementById("addStringBtn").addEventListener("click", function() { arr.push("abc"); refresh(); } );
+        document.getElementById("addObjectBtn").addEventListener("click", function() { arr.push({}); refresh(); } );
+        document.getElementById("addNullBtn").addEventListener("click", function() { arr.push(null); refresh(); } );
+        document.getElementById("addUndefinedBtn").addEventListener("click", function() { arr.push(undefined); refresh(); } );
+        document.getElementById("addEmptyStringBtn").addEventListener("click", function() { arr.push(""); refresh(); } );
+
+    </script>
+    
+</body>
+</html>  
